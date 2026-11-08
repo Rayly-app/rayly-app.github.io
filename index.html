@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rayly: cuánto sol te toca hoy</title>
+<meta name="description" content="Rayly calcula cuánto sol te toca hoy según tu piel y el UV de tu zona, y te avisa para darte la vuelta y para salir del sol. Gratis para iPhone y Android.">
+<meta name="theme-color" content="#14100A">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rayly: cuánto sol te toca hoy">
+<meta property="og:description" content="Calcula tu tiempo al sol según tu piel y el UV de tu zona. Gratis para iPhone y Android.">
+<meta property="og:image" content="https://rayly-app.github.io/img/og.jpg">
+<meta property="og:url" content="https://rayly-app.github.io/">
+<link rel="canonical" href="https://rayly-app.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/web.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-tema="noche">
+
+<!-- El sol de Rayly (el mismo dibujo que el icono de la app) -->
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-sol" cx="50%" cy="42%" r="64%">
+      <stop offset="0" stop-color="#FFF1BC"/><stop offset="0.5" stop-color="#F3C531"/><stop offset="1" stop-color="#C4870F"/>
+    </radialGradient>
+    <path id="rayo" d="M0 -18C-2.6 -25 -3.4 -33 -1.4 -41C-0.6 -44 0.4 -47 2 -49C1.2 -45 1.8 -41 1.6 -37C1.4 -30 2 -24 0 -18Z"/>
+    <symbol id="sol-rayos" viewBox="-60 -60 120 120">
+      <use href="#rayo"/><use href="#rayo" transform="rotate(22.5)"/><use href="#rayo" transform="rotate(45)"/><use href="#rayo" transform="rotate(67.5)"/>
+      <use href="#rayo" transform="rotate(90)"/><use href="#rayo" transform="rotate(112.5)"/><use href="#rayo" transform="rotate(135)"/><use href="#rayo" transform="rotate(157.5)"/>
+      <use href="#rayo" transform="rotate(180)"/><use href="#rayo" transform="rotate(202.5)"/><use href="#rayo" transform="rotate(225)"/><use href="#rayo" transform="rotate(247.5)"/>
+      <use href="#rayo" transform="rotate(270)"/><use href="#rayo" transform="rotate(292.5)"/><use href="#rayo" transform="rotate(315)"/><use href="#rayo" transform="rotate(337.5)"/>
+    </symbol>
+    <symbol id="sol-espiral" viewBox="-60 -60 120 120">
+      <path fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M0.0 -2.0 L0.4 -2.1 L0.8 -2.1 L1.2 -2.1 L1.6 -2.0 L2.1 -1.7 L2.5 -1.4 L2.8 -1.0 L3.1 -0.5 L3.3 0.0 L3.3 0.6 L3.3 1.2 L3.2 1.8 L2.9 2.4 L2.5 3.0 L2.0 3.5 L1.4 4.0 L0.8 4.3 L0.0 4.5 L-0.8 4.6 L-1.6 4.5 L-2.5 4.3 L-3.2 3.9 L-4.0 3.3 L-4.6 2.7 L-5.1 1.9 L-5.5 1.0 L-5.8 0.0 L-5.8 -1.0 L-5.7 -2.1 L-5.3 -3.1 L-4.8 -4.1 L-4.1 -4.9 L-3.3 -5.7 L-2.3 -6.3 L-1.2 -6.8 L0.0 -7.0 L1.2 -7.0 L2.5 -6.8 L3.7 -6.4 L4.9 -5.8 L5.9 -4.9 L6.8 -3.9 L7.5 -2.7 L8.0 -1.4 L8.3 0.0 L8.3 1.5 L8.0 2.9 L7.5 4.3 L6.7 5.7 L5.7 6.9 L4.5 7.9 L3.2 8.7 L1.6 9.2 L0.0 9.5 L-1.7 9.5 L-3.3 9.2 L-5.0 8.6 L-6.5 7.7 L-7.8 6.6 L-8.9 5.2 L-9.8 3.6 L-10.4 1.8 L-10.8 0.0 L-10.7 -1.9 L-10.4 -3.8 L-9.7 -5.6 L-8.7 -7.3 L-7.4 -8.8 L-5.8 -10.0 L-4.0 -11.0 L-2.1 -11.7 L0.0 -12.0 L2.1 -12.0 L4.2 -11.5 L6.2 -10.8 L8.1 -9.6 L9.7 -8.2 L11.1 -6.4 L12.2 -4.4 L12.9 -2.3 L13.3 0.0 L13.2 2.3 L12.7 4.6 L11.8 6.8 L10.6 8.9 L9.0 10.7 L7.0 12.2 L4.9 13.4 L2.5 14.1 L0.0 14.5"/>
+    </symbol>
+    <symbol id="ico-bajar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
+    <symbol id="ico-sol" viewBox="-60 -60 120 120"><use href="#sol-rayos"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <a class="marca" href="#inicio" aria-label="Rayly">
+    <svg class="marca-sol"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
+    <span>Rayly</span>
+  </a>
+  <nav class="nav-enlaces" aria-label="Secciones">
+    <a href="#como" data-i18n="nav.como">Cómo funciona</a>
+    <a href="#funciones" data-i18n="nav.funciones">Funciones</a>
+    <a href="#privacidad" data-i18n="nav.privacidad">Privacidad</a>
+    <a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a>
+  </nav>
+  <div class="nav-acciones">
+    <div class="idioma" role="group" aria-label="Idioma">
+      <button type="button" data-idioma="es" aria-pressed="true">ES</button>
+      <button type="button" data-idioma="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="boton boton-oro boton-nav" href="#descargar" data-i18n="nav.descargar">Descargar</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ========== PORTADA ========== -->
+  <section class="hero" id="inicio" data-tema="noche">
+    <div class="hero-cielo" aria-hidden="true"></div>
+    <div class="hero-estrellas" aria-hidden="true"></div>
+
+    <div class="hero-texto">
+      <p class="chip" data-revela><span class="chip-punto"></span><span data-i18n="hero.chip">Gratis para iPhone y Android</span></p>
+      <h1 class="hero-titulo" data-revela style="--d:1" data-i18n="hero.titulo">Toma el sol <span class="oro">con cabeza.</span></h1>
+      <p class="hero-sub" data-revela style="--d:2" data-i18n="hero.sub">Rayly calcula cuánto sol te toca hoy según tu piel y el UV de tu zona. Y te avisa para darte la vuelta y para salir del sol.</p>
+      <div class="tiendas" data-revela style="--d:3">
+        <a class="tienda" data-tienda="ios" href="#descargar">
+          <svg class="tienda-ico"><use href="#ico-bajar"/></svg>
+          <span><small data-tienda-pre>Descárgala en</small><b>App Store</b></span>
+        </a>
+        <a class="tienda" data-tienda="android" href="#descargar">
+          <svg class="tienda-ico"><use href="#ico-bajar"/></svg>
+          <span><small data-tienda-pre>Descárgala en</small><b>Google Play</b></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- El sol de Rayly entero, girando, y debajo una etiqueta con datos de la app -->
+    <div class="hero-escena" aria-hidden="true">
+      <div class="hero-sol" id="hero-sol">
+        <div class="hero-halo"></div>
+        <span class="anillo"></span><span class="anillo" style="--d:1"></span><span class="anillo" style="--d:2"></span>
+        <svg class="hero-rayos"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
+        <svg class="hero-espiral"><use href="#sol-espiral" stroke="#E2AC22"/></svg>
+      </div>
+      <!-- Una sola etiqueta debajo del sol que va cambiando de dato -->
+      <div class="hero-datos" id="hero-datos">
+        <div class="dato activo"><span class="dato-punto"></span><span data-i18n="flota.uv">UVI ahora</span> <b data-en="4.6">4,6</b></div>
+        <div class="dato"><b>12 min</b> <span data-i18n="flota.lado">por cada lado</span></div>
+        <div class="dato"><b>SPF 30</b> <span data-i18n="flota.spf">bloquea el 97%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CINTA ========== -->
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta-pista">
+      <div class="cinta-grupo">
+        <span data-i18n="cinta.1">Tu fototipo</span><svg><use href="#ico-sol"/></svg>
+        <span data-i18n="cinta.2">El UV de tu zona</span><svg><use href="#ico-sol"/></svg>
+        <span data-i18n="cinta.3">Aviso para darte la vuelta</span><svg><use href="#ico-sol"/></svg>
+        <span data-i18n="cinta.4">Con la app cerrada</span><svg><use href="#ico-sol"/></svg>
+        <span data-i18n="cinta.5">Sin cuenta</span><svg><use href="#ico-sol"/></svg>
+        <span data-i18n="cinta.6">Sin anuncios</span><svg><use href="#ico-sol"/></svg>
+        <span data-i18n="cinta.7">Gratis</span><svg><use href="#ico-sol"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FRASE QUE SE ILUMINA ========== -->
+  <section class="frase" data-tema="noche">
+    <p class="frase-texto" id="frase" data-i18n="frase">Media hora de sol en enero no es lo mismo que en agosto. Ni para tu piel que para la de tu amigo. <span class="oro">Rayly hace la cuenta por ti.</span></p>
+  </section>
+
+  <!-- ========== UN DÍA DE SOL (interactivo) ========== -->
+  <section class="dia" id="dia" data-tema="dia">
+    <div class="contenedor dia-rejilla">
+      <div class="dia-intro">
+        <h2 class="titulo" data-revela style="--d:1" data-i18n="dia.titulo">El UV cambia <span class="oro">cada hora.</span></h2>
+        <p class="texto" data-revela style="--d:2" data-i18n="dia.texto">Desliza y mira cómo sube y baja en un día de julio en la costa. Rayly sigue la previsión de tu zona hora a hora y la cruza con tu piel.</p>
+      </div>
+
+      <div class="dia-tarjeta" id="dia-tarjeta" data-revela style="--d:1">
+        <div class="dia-cielo" id="dia-cielo">
+          <svg class="dia-arco" viewBox="0 0 400 210" aria-hidden="true">
+            <path d="M20 200 A180 180 0 0 1 380 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 7" stroke-linecap="round"/>
+            <g id="dia-sol"><circle r="26" fill="#FFE27A" opacity=".35"/><use href="#sol-rayos" x="-22" y="-22" width="44" height="44" fill="url(#g-sol)"/></g>
+          </svg>
+          <div class="dia-datos">
+            <span class="dia-hora" id="dia-hora">14:00</span>
+            <span class="dia-uv"><b id="dia-uv">9,0</b> UV</span>
+            <span class="dia-nivel" id="dia-nivel">Muy alto</span>
+          </div>
+        </div>
+        <div class="dia-barras" id="dia-barras" aria-hidden="true"></div>
+        <label class="oculto" for="dia-rango" data-i18n="dia.rango">Hora del día</label>
+        <input class="dia-rango" id="dia-rango" type="range" min="7" max="21" step="0.25" value="9">
+        <div class="dia-marcas" aria-hidden="true"><span>7:00</span><span>11:00</span><span>14:00</span><span>17:00</span><span>21:00</span></div>
+        <p class="dia-msg" id="dia-msg" aria-live="polite"></p>
+        <p class="dia-nota" data-i18n="dia.nota">Ejemplo orientativo. En la app, con la previsión real de tu zona.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CÓMO FUNCIONA (móvil fijo) ========== -->
+  <section class="pasos" id="como" data-tema="dia">
+    <div class="contenedor">
+      <h2 class="titulo" data-revela style="--d:1" data-i18n="pasos.titulo">Así de fácil, <span class="oro">de verdad.</span></h2>
+    </div>
+    <div class="pasos-cuerpo" id="pasos-cuerpo">
+     <div class="contenedor pasos-escena">
+      <div class="pasos-movil" id="pasos-escena-movil">
+        <div class="movil" id="pasos-movil"><div class="movil-pantalla">
+          <img class="pantalla activa" data-paso="1" src="img/test.webp" alt="" width="600" height="1267" loading="lazy">
+          <img class="pantalla" data-paso="2" src="img/principal.webp" alt="" width="600" height="1267" loading="lazy">
+          <img class="pantalla" data-paso="3" src="img/grafico.webp" alt="" width="600" height="1267" loading="lazy">
+          <img class="pantalla" data-paso="4" src="img/crono_app.webp" alt="" width="600" height="1267" loading="lazy">
+          <img class="pantalla" data-paso="5" src="img/noche.webp" alt="" width="600" height="1267" loading="lazy">
+          <img class="pasos-noti" src="img/noti.webp" alt="" width="640" height="239" loading="lazy">
+        </div></div>
+        <div class="pasos-puntos" aria-hidden="true"><i class="activo"></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <ol class="pasos-lista">
+        <li class="paso activo" data-paso="1">
+          <span class="paso-num">01</span>
+          <h3 data-i18n="paso1.t">Descubre tu piel</h3>
+          <p data-i18n="paso1.p">Ocho preguntas y un minuto. Con ellas Rayly sabe tu fototipo, que es lo que marca cuánto sol aguanta tu piel.</p>
+        </li>
+        <li class="paso" data-paso="2">
+          <span class="paso-num">02</span>
+          <h3 data-i18n="paso2.t">Mira tu sol de hoy</h3>
+          <p data-i18n="paso2.p">Con el UV de tu zona, Rayly te dice cuántos minutos te tocan por cada lado. Elige sol suave, equilibrado o para broncear.</p>
+        </li>
+        <li class="paso" data-paso="3">
+          <span class="paso-num">03</span>
+          <h3 data-i18n="paso3.t">Elige la mejor hora</h3>
+          <p data-i18n="paso3.p">El UV de hoy hora a hora, y el mejor día de la semana para tu plan.</p>
+        </li>
+        <li class="paso" data-paso="4">
+          <span class="paso-num">04</span>
+          <h3 data-i18n="paso4.t">Túmbate, que ya te avisa</h3>
+          <p data-i18n="paso4.p">Pon el crono y olvídate. Te avisa para darte la vuelta y para salir del sol, aunque tengas la app cerrada.</p>
+        </li>
+        <li class="paso" data-paso="5">
+          <span class="paso-num">05</span>
+          <h3 data-i18n="paso5.t">Y por la noche, el plan de mañana</h3>
+          <p data-i18n="paso5.p">A qué hora vuelve el sol y cuánto UV habrá, para que lo tengas todo listo.</p>
+        </li>
+      </ol>
+     </div>
+    </div>
+  </section>
+
+  <!-- ========== FUNCIONES (bento) ========== -->
+  <section class="funciones" id="funciones" data-tema="dia">
+    <div class="contenedor">
+      <h2 class="titulo" data-revela style="--d:1" data-i18n="fun.titulo">Pensada hasta el <span class="oro">último rayo.</span></h2>
+
+      <div class="bento">
+        <article class="caja caja-piel" data-revela data-inclina>
+          <div class="piel-puntos" id="piel-puntos" aria-hidden="true">
+            <i style="--c:#FDDBB4" data-n="I"></i><i style="--c:#F5C99A" data-n="II"></i><i style="--c:#E8B07A" data-n="III"></i><i style="--c:#C8855A;--t:#fff" data-n="IV"></i><i style="--c:#9B5E3A;--t:#fff" data-n="V"></i><i style="--c:#5C3018;--t:#fff" data-n="VI"></i>
+          </div>
+          <h3 data-i18n="fun.piel.t">Hecha para tu piel</h3>
+          <p data-i18n="fun.piel.p">Del fototipo I al VI. El tiempo al sol cambia mucho de una piel a otra, y Rayly lo tiene en cuenta.</p>
+        </article>
+
+        <article class="caja caja-noti" data-revela style="--d:1" data-inclina>
+          <div class="noti-escena" aria-hidden="true">
+            <span class="noti-hora">12:46</span>
+            <img src="img/noti.webp" alt="" width="640" height="239" loading="lazy">
+          </div>
+          <h3 data-i18n="fun.noti.t">Con la app cerrada</h3>
+          <p data-i18n="fun.noti.p">Los avisos llegan aunque bloquees el móvil.</p>
+        </article>
+
+        <article class="caja caja-compartir" data-revela style="--d:2" data-inclina>
+          <div class="mini-movil" aria-hidden="true"><img src="img/compartir.webp" alt="" width="600" height="1267" loading="lazy"></div>
+          <div>
+            <h3 data-i18n="fun.comp.t">Comparte tu día de sol</h3>
+            <p data-i18n="fun.comp.p">Una tarjeta con tu foto y los datos del día, lista para tus historias.</p>
+          </div>
+        </article>
+
+        <article class="caja caja-lugar" data-revela data-inclina>
+          <div class="lugar-escena" aria-hidden="true">
+            <span class="pin"><i></i></span>
+            <span class="lugar-nombre" id="lugar-nombre">Tarragona</span>
+          </div>
+          <h3 data-i18n="fun.lugar.t">El UV de donde estés</h3>
+          <p data-i18n="fun.lugar.p">Usa tu ubicación o busca cualquier ciudad del mundo.</p>
+        </article>
+
+        <article class="caja caja-spf" data-revela style="--d:1" data-inclina>
+          <div class="spf-escena" aria-hidden="true">
+            <span class="spf-num" id="spf-num">SPF 30</span>
+            <span class="spf-barra"><i id="spf-barra" style="--p:97%"></i></span>
+            <span class="spf-pct"><b id="spf-pct">97%</b> <span data-i18n="fun.spf.bloquea">del UV bloqueado</span></span>
+          </div>
+          <h3 data-i18n="fun.spf.t">Tu protección, a la vista</h3>
+          <p data-i18n="fun.spf.p">Elige tu SPF y mira cuánto UV frena.</p>
+        </article>
+
+        <article class="caja caja-gratis" data-revela style="--d:2" data-inclina>
+          <p class="gratis-num" aria-hidden="true">0 €</p>
+          <div>
+            <h3 data-i18n="fun.gratis.t">Gratis, sin cuenta y sin anuncios</h3>
+            <p data-i18n="fun.gratis.p">La abres, haces el test y a disfrutar.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="cifras">
+        <div class="cifra" data-revela><b data-cuenta="1">1</b><span class="cifra-ud">min</span><p data-i18n="cifra.1">para conocer tu piel</p></div>
+        <div class="cifra" data-revela style="--d:1"><b data-cuenta="6">6</b><p data-i18n="cifra.2">fototipos</p></div>
+        <div class="cifra" data-revela style="--d:2"><b data-cuenta="3">3</b><p data-i18n="cifra.3">planes de sol</p></div>
+        <div class="cifra" data-revela style="--d:3"><b data-cuenta="0">0</b><p data-i18n="cifra.4">cuentas que crear</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRIVACIDAD ========== -->
+  <section class="privacidad" id="privacidad" data-tema="noche">
+    <div class="privacidad-estrellas" aria-hidden="true"></div>
+    <div class="contenedor">
+      <h2 class="titulo" data-revela style="--d:1" data-i18n="priv.titulo">Tu piel es <span class="oro">cosa tuya.</span></h2>
+      <div class="priv-rejilla">
+        <article class="priv" data-revela>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.6-5.6 7-5.6s6.2 2 7 5.6"/><path d="M4 4l16 16"/></svg>
+          <h3 data-i18n="priv.1.t">Sin cuenta</h3>
+          <p data-i18n="priv.1.p">Abres la app y listo. Ni correo ni contraseña.</p>
+        </article>
+        <article class="priv" data-revela style="--d:1">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg>
+          <h3 data-i18n="priv.2.t">Tu ubicación, solo para el UV</h3>
+          <p data-i18n="priv.2.p">Sirve para saber el UV y tu ciudad. Nada más.</p>
+        </article>
+        <article class="priv" data-revela style="--d:2">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.8" width="10" height="18.4" rx="2.4"/><path d="M10.5 5.6h3"/><path d="M12 11.2v4.2"/><circle cx="12" cy="10" r="1.2"/></svg>
+          <h3 data-i18n="priv.3.t">Todo se queda en tu móvil</h3>
+          <p data-i18n="priv.3.p">Tu tipo de piel y tus ajustes no salen de tu teléfono. No los vemos ni los vendemos.</p>
+        </article>
+      </div>
+      <a class="enlace" data-revela href="https://pjnl-15.github.io/Rayly/?lang=es" data-enlace-legal="privacidad" target="_blank" rel="noopener"><span data-i18n="priv.enlace">Lee la política de privacidad</span></a>
+    </div>
+  </section>
+
+  <!-- ========== NOSOTROS / INVERSORES / PRENSA ========== -->
+  <section class="nosotros" id="nosotros" data-tema="tarde">
+    <div class="contenedor nosotros-rejilla">
+      <div>
+        <h2 class="titulo" data-revela style="--d:1" data-i18n="nos.titulo">Disfrutar del sol, <span class="oro">sin pasarse.</span></h2>
+        <p class="texto" data-revela style="--d:2" data-i18n="nos.texto">Rayly es un proyecto de PJ Climate Labs. Nace de una pregunta que todos nos hacemos en la playa: ¿cuánto rato puedo estar hoy al sol? Queremos que la respuesta esté en tu bolsillo, clara y pensada para tu piel.</p>
+
+        <div class="contacto" data-revela style="--d:3">
+          <h3 data-i18n="nos.contacto.t">¿Inversión, prensa o colaboraciones?</h3>
+          <p data-i18n="nos.contacto.p">Nos encantará hablar contigo.</p>
+          <a class="boton boton-oro" href="mailto:pjclimatelabs@gmail.com?subject=Rayly"><span data-i18n="nos.contacto.boton">Escríbenos</span></a>
+          <span class="contacto-correo">pjclimatelabs@gmail.com</span>
+        </div>
+      </div>
+
+      <ol class="ruta" id="ruta">
+        <span class="ruta-linea" aria-hidden="true"><i id="ruta-progreso"></i></span>
+        <li data-revela>
+          <span class="ruta-cuando" data-i18n="ruta.1.c">Otoño 2026</span>
+          <h3 data-i18n="ruta.1.t">Lanzamiento</h3>
+          <p data-i18n="ruta.1.p">En iPhone y Android a la vez, gratis y en español e inglés.</p>
+        </li>
+        <li data-revela style="--d:1">
+          <span class="ruta-cuando" data-i18n="ruta.2.c">Verano 2027</span>
+          <h3>Rayly Plus</h3>
+          <p data-i18n="ruta.2.p">Funciones extra para quien quiera ir un paso más allá.</p>
+        </li>
+        <li data-revela style="--d:2">
+          <span class="ruta-cuando" data-i18n="ruta.3.c">Después</span>
+          <h3 data-i18n="ruta.3.t">Más sol, más gente</h3>
+          <p data-i18n="ruta.3.p">Nuevos idiomas y nuevas herramientas para cuidarse al sol.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========== PREGUNTAS FRECUENTES ========== -->
+  <section class="faq" id="faq" data-tema="tarde">
+    <div class="contenedor contenedor-estrecho">
+      <h2 class="titulo" data-revela style="--d:1" data-i18n="faq.titulo">Lo que nos <span class="oro">preguntáis.</span></h2>
+      <div class="faq-lista">
+        <details data-revela>
+          <summary data-i18n="faq.1.q">¿Rayly es gratis?</summary>
+          <p data-i18n="faq.1.a">Sí. Puedes usarla gratis y sin anuncios. Más adelante llegará Rayly Plus, con funciones extra que serán opcionales.</p>
+        </details>
+        <details data-revela>
+          <summary data-i18n="faq.2.q">¿Tengo que crear una cuenta?</summary>
+          <p data-i18n="faq.2.a">No. La abres, haces el test de tu piel y ya está.</p>
+        </details>
+        <details data-revela>
+          <summary data-i18n="faq.3.q">¿Me avisa si cierro la app?</summary>
+          <p data-i18n="faq.3.a">Sí. Los avisos para darte la vuelta y para salir del sol llegan aunque cierres la app o bloquees el móvil.</p>
+        </details>
+        <details data-revela>
+          <summary data-i18n="faq.4.q">¿De dónde salen los datos del UV?</summary>
+          <p data-i18n="faq.4.a">De la previsión de Open-Meteo para tu ubicación, que se va actualizando a lo largo del día.</p>
+        </details>
+        <details data-revela>
+          <summary data-i18n="faq.5.q">¿Sustituye a la crema solar o al médico?</summary>
+          <p data-i18n="faq.5.a">No. Rayly te da estimaciones orientativas para disfrutar del sol con cabeza, pero no es consejo médico. Usa protección y, ante cualquier duda, consulta con tu médico o dermatólogo.</p>
+        </details>
+        <details data-revela>
+          <summary data-i18n="faq.6.q">¿En qué móviles funciona?</summary>
+          <p data-i18n="faq.6.a">En iPhone con iOS 15 o posterior y en Android 7.0 o posterior.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FINAL ========== -->
+  <section class="final" id="descargar" data-tema="noche">
+    <div class="final-sol" id="final-sol" aria-hidden="true">
+      <div class="hero-halo"></div>
+      <svg class="hero-rayos"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
+    </div>
+    <div class="contenedor final-texto">
+      <h2 class="titulo titulo-grande" data-revela data-i18n="final.titulo">Tu sol de hoy <span class="oro">te&nbsp;espera.</span></h2>
+      <p class="texto" data-revela style="--d:1" data-i18n="final.texto">Ya disponible en tu tienda de apps. Gratis.</p>
+      <div class="tiendas" data-revela style="--d:2">
+        <a class="tienda" data-tienda="ios" href="#descargar">
+          <svg class="tienda-ico"><use href="#ico-bajar"/></svg>
+          <span><small data-tienda-pre>Descárgala en</small><b>App Store</b></span>
+        </a>
+        <a class="tienda" data-tienda="android" href="#descargar">
+          <svg class="tienda-ico"><use href="#ico-bajar"/></svg>
+          <span><small data-tienda-pre>Descárgala en</small><b>Google Play</b></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie-arriba">
+    <a class="marca" href="#inicio" aria-label="Rayly">
+      <svg class="marca-sol"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
+      <span>Rayly</span>
+    </a>
+    <nav class="pie-enlaces" aria-label="Legal y contacto">
+      <a href="https://pjnl-15.github.io/Rayly/?lang=es" data-enlace-legal="privacidad" target="_blank" rel="noopener" data-i18n="pie.privacidad">Privacidad</a>
+      <a href="https://pjnl-15.github.io/Rayly/terminos.html?lang=es" data-enlace-legal="terminos" target="_blank" rel="noopener" data-i18n="pie.terminos">Términos</a>
+      <a href="mailto:pjclimatelabs@gmail.com" data-i18n="pie.contacto">Contacto</a>
+      <a href="#" id="enlace-instagram" target="_blank" rel="noopener" hidden>Instagram</a>
+    </nav>
+  </div>
+  <p class="pie-marca" aria-hidden="true">Rayly</p>
+  <div class="contenedor pie-abajo">
+    <p>&copy; 2026 PJ Climate Labs</p>
+    <p data-i18n="pie.aviso">Rayly te orienta, pero no es consejo médico.</p>
+    <p><span data-i18n="pie.datos">Datos UV:</span> <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a></p>
+  </div>
+</footer>
+
+<script src="js/web.js" defer></script>
+</body>
+</html>
