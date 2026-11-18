@@ -56,10 +56,10 @@
   h1 { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: clamp(28px, 5.4svh, 50px); line-height: 1; margin: clamp(2px, .8svh, 8px) 0 0; letter-spacing: -.01em; }
   .frase { margin: clamp(4px, 1svh, 10px) 0 0; font-size: clamp(13px, 2.05svh, 17px); line-height: 1.45; color: var(--suave); max-width: 21em; }
 
-  /* Botón largo de la web, con nuestro sol */
+  /* Botón largo del proyecto (lleva a "Detrás de Rayly", donde está el contacto para colaborar o invertir), con nuestro sol */
   .web {
-    width: 100%; height: clamp(46px, 7.4svh, 66px); border-radius: 18px;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; height: clamp(50px, 7.4svh, 66px); border-radius: 18px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
     background: linear-gradient(135deg, var(--oro-claro), var(--oro) 45%, var(--oro-2));
     color: var(--marron); text-decoration: none;
     font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: clamp(16px, 2.3svh, 20px);
@@ -67,6 +67,8 @@
     transition: transform .2s ease, box-shadow .2s ease;
   }
   .web svg { width: clamp(28px, 4.4svh, 38px); height: clamp(28px, 4.4svh, 38px); }
+  .web-texto { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; text-align: left; }
+  .web-texto small { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: clamp(11px, 1.55svh, 13px); opacity: .78; margin-top: 2px; }
   .web:active, .web:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(217,162,26,.9); }
 
   /* Botones oficiales de las tiendas, separados del de la web */
@@ -128,9 +130,9 @@
  </div>
 
  <div class="acciones">
-  <a class="web" href="https://rayly-app.github.io/">
+  <a class="web" href="https://rayly-app.github.io/#nosotros">
     <svg viewBox="-60 -60 120 120" aria-hidden="true"><g fill="#3E3116"><use href="#r"/><use href="#r" transform="rotate(22.5)"/><use href="#r" transform="rotate(45)"/><use href="#r" transform="rotate(67.5)"/><use href="#r" transform="rotate(90)"/><use href="#r" transform="rotate(112.5)"/><use href="#r" transform="rotate(135)"/><use href="#r" transform="rotate(157.5)"/><use href="#r" transform="rotate(180)"/><use href="#r" transform="rotate(202.5)"/><use href="#r" transform="rotate(225)"/><use href="#r" transform="rotate(247.5)"/><use href="#r" transform="rotate(270)"/><use href="#r" transform="rotate(292.5)"/><use href="#r" transform="rotate(315)"/><use href="#r" transform="rotate(337.5)"/></g><use href="#esp" stroke="#3E3116"/></svg>
-    <span data-en="Visit the website">Visita la web</span>
+    <span class="web-texto"><span data-en="Discover the project">Conoce el proyecto</span><small data-en="The story behind Rayly">La historia detrás de Rayly</small></span>
   </a>
 
   <div class="tiendas" id="tiendas">
