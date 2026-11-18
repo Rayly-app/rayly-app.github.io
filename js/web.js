@@ -12,7 +12,7 @@ const TIENDAS = {
   android: 'https://play.google.com/store/apps/details?id=com.rayly.app'
 };
 // Cuando exista la cuenta, poner aquí el enlace y aparece en el pie.
-const INSTAGRAM = '';
+const INSTAGRAM = 'https://www.instagram.com/rayly.app/';
 
 const menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
