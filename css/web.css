@@ -509,7 +509,7 @@ body[data-tema="dia"] .oro, body[data-tema="tarde"] .oro {
    ============================================================ */
 .privacidad { position: relative; overflow: hidden; padding: var(--sec) 0; }
 .priv-rejilla { display: grid; gap: 14px; margin-top: 28px; }
-@media (min-width: 820px) { .priv-rejilla { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 820px) { .priv-rejilla { grid-template-columns: repeat(2, 1fr); } }
 /* En el móvil el icono va a la izquierda del texto: cada tarjeta ocupa menos */
 .priv {
   display: grid; grid-template-columns: 38px 1fr; column-gap: 16px;
