@@ -25,27 +25,18 @@
 <!-- El sol de Rayly (el mismo dibujo que el icono de la app) -->
 <svg class="defs" aria-hidden="true" focusable="false">
   <defs>
-    <radialGradient id="g-sol" cx="50%" cy="42%" r="64%">
-      <stop offset="0" stop-color="#FFF1BC"/><stop offset="0.5" stop-color="#F3C531"/><stop offset="1" stop-color="#C4870F"/>
-    </radialGradient>
+    <linearGradient id="g-sol" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFEC9E"/><stop offset="0.45" stop-color="#F5C531"/><stop offset="1" stop-color="#D9A21A"/></linearGradient>
     <path id="rayo" d="M0 -18C-2.6 -25 -3.4 -33 -1.4 -41C-0.6 -44 0.4 -47 2 -49C1.2 -45 1.8 -41 1.6 -37C1.4 -30 2 -24 0 -18Z"/>
-    <symbol id="sol-rayos" viewBox="-60 -60 120 120">
-      <use href="#rayo"/><use href="#rayo" transform="rotate(22.5)"/><use href="#rayo" transform="rotate(45)"/><use href="#rayo" transform="rotate(67.5)"/>
-      <use href="#rayo" transform="rotate(90)"/><use href="#rayo" transform="rotate(112.5)"/><use href="#rayo" transform="rotate(135)"/><use href="#rayo" transform="rotate(157.5)"/>
-      <use href="#rayo" transform="rotate(180)"/><use href="#rayo" transform="rotate(202.5)"/><use href="#rayo" transform="rotate(225)"/><use href="#rayo" transform="rotate(247.5)"/>
-      <use href="#rayo" transform="rotate(270)"/><use href="#rayo" transform="rotate(292.5)"/><use href="#rayo" transform="rotate(315)"/><use href="#rayo" transform="rotate(337.5)"/>
-    </symbol>
-    <symbol id="sol-espiral" viewBox="-60 -60 120 120">
-      <path fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M0.0 -2.0 L0.4 -2.1 L0.8 -2.1 L1.2 -2.1 L1.6 -2.0 L2.1 -1.7 L2.5 -1.4 L2.8 -1.0 L3.1 -0.5 L3.3 0.0 L3.3 0.6 L3.3 1.2 L3.2 1.8 L2.9 2.4 L2.5 3.0 L2.0 3.5 L1.4 4.0 L0.8 4.3 L0.0 4.5 L-0.8 4.6 L-1.6 4.5 L-2.5 4.3 L-3.2 3.9 L-4.0 3.3 L-4.6 2.7 L-5.1 1.9 L-5.5 1.0 L-5.8 0.0 L-5.8 -1.0 L-5.7 -2.1 L-5.3 -3.1 L-4.8 -4.1 L-4.1 -4.9 L-3.3 -5.7 L-2.3 -6.3 L-1.2 -6.8 L0.0 -7.0 L1.2 -7.0 L2.5 -6.8 L3.7 -6.4 L4.9 -5.8 L5.9 -4.9 L6.8 -3.9 L7.5 -2.7 L8.0 -1.4 L8.3 0.0 L8.3 1.5 L8.0 2.9 L7.5 4.3 L6.7 5.7 L5.7 6.9 L4.5 7.9 L3.2 8.7 L1.6 9.2 L0.0 9.5 L-1.7 9.5 L-3.3 9.2 L-5.0 8.6 L-6.5 7.7 L-7.8 6.6 L-8.9 5.2 L-9.8 3.6 L-10.4 1.8 L-10.8 0.0 L-10.7 -1.9 L-10.4 -3.8 L-9.7 -5.6 L-8.7 -7.3 L-7.4 -8.8 L-5.8 -10.0 L-4.0 -11.0 L-2.1 -11.7 L0.0 -12.0 L2.1 -12.0 L4.2 -11.5 L6.2 -10.8 L8.1 -9.6 L9.7 -8.2 L11.1 -6.4 L12.2 -4.4 L12.9 -2.3 L13.3 0.0 L13.2 2.3 L12.7 4.6 L11.8 6.8 L10.6 8.9 L9.0 10.7 L7.0 12.2 L4.9 13.4 L2.5 14.1 L0.0 14.5"/>
-    </symbol>
+    <path id="espiral" fill="none" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M 0.00 -2.00 L 0.23 -2.08 L 0.48 -2.12 L 0.75 -2.14 L 1.02 -2.12 L 1.30 -2.07 L 1.58 -1.98 L 1.86 -1.86 L 2.12 -1.69 L 2.37 -1.49 L 2.61 -1.26 L 2.81 -0.98 L 2.99 -0.68 L 3.14 -0.35 L 3.25 0.00 L 3.32 0.37 L 3.34 0.76 L 3.32 1.16 L 3.25 1.57 L 3.13 1.97 L 2.96 2.36 L 2.74 2.74 L 2.47 3.10 L 2.16 3.43 L 1.80 3.73 L 1.40 3.99 L 0.96 4.21 L 0.49 4.38 L 0.00 4.50 L -0.51 4.56 L -1.04 4.56 L -1.57 4.50 L -2.11 4.38 L -2.63 4.19 L -3.14 3.94 L -3.62 3.62 L -4.08 3.25 L -4.49 2.82 L -4.86 2.34 L -5.17 1.81 L -5.43 1.24 L -5.63 0.63 L -5.75 0.00 L -5.80 -0.65 L -5.78 -1.32 L -5.68 -1.99 L -5.50 -2.65 L -5.25 -3.30 L -4.91 -3.92 L -4.51 -4.51 L -4.03 -5.05 L -3.49 -5.55 L -2.88 -5.99 L -2.22 -6.35 L -1.52 -6.65 L -0.77 -6.87 L -0.00 -7.00 L 0.79 -7.04 L 1.60 -7.00 L 2.40 -6.86 L 3.19 -6.63 L 3.96 -6.31 L 4.70 -5.89 L 5.39 -5.39 L 6.03 -4.81 L 6.61 -4.15 L 7.11 -3.42 L 7.53 -2.64 L 7.87 -1.80 L 8.11 -0.91 L 8.25 -0.00 L 8.29 0.93 L 8.22 1.88 L 8.04 2.81 L 7.75 3.73 L 7.36 4.63 L 6.87 5.48 L 6.28 6.28 L 5.59 7.01 L 4.82 7.67 L 3.97 8.24 L 3.05 8.71 L 2.07 9.09 L 1.05 9.35 L 0.00 9.50 L -1.07 9.53 L -2.15 9.44 L -3.23 9.22 L -4.28 8.88 L -5.29 8.42 L -6.26 7.85 L -7.16 7.16 L -7.99 6.37 L -8.72 5.48 L -9.36 4.51 L -9.89 3.46 L -10.31 2.35 L -10.59 1.19 L -10.75 0.00 L -10.77 -1.21 L -10.65 -2.43 L -10.40 -3.64 L -10.01 -4.82 L -9.48 -5.96 L -8.82 -7.04 L -8.04 -8.04 L -7.15 -8.96 L -6.15 -9.78 L -5.05 -10.49 L -3.87 -11.07 L -2.63 -11.53 L -1.33 -11.84 L -0.00 -12.00 L 1.35 -12.01 L 2.71 -11.87 L 4.05 -11.58 L 5.36 -11.13 L 6.62 -10.54 L 7.82 -9.80 L 8.93 -8.93 L 9.94 -7.93 L 10.84 -6.81 L 11.62 -5.59 L 12.25 -4.29 L 12.74 -2.91 L 13.08 -1.47 L 13.25 -0.00 L 13.26 1.49 L 13.09 2.99 L 12.76 4.46 L 12.26 5.90 L 11.60 7.29 L 10.78 8.60 L 9.81 9.81 L 8.71 10.92 L 7.48 11.90 L 6.14 12.74 L 4.70 13.43 L 3.19 13.96 L 1.61 14.32 L 0.00 14.50"/>
+    <!-- El logo entero (16 rayos + espiral). Se pinta poniendo fill y stroke en el <use> -->
+    <symbol id="sol" viewBox="-60 -60 120 120"><g stroke="none"><use href="#rayo"/><use href="#rayo" transform="rotate(22.5)"/><use href="#rayo" transform="rotate(45)"/><use href="#rayo" transform="rotate(67.5)"/><use href="#rayo" transform="rotate(90)"/><use href="#rayo" transform="rotate(112.5)"/><use href="#rayo" transform="rotate(135)"/><use href="#rayo" transform="rotate(157.5)"/><use href="#rayo" transform="rotate(180)"/><use href="#rayo" transform="rotate(202.5)"/><use href="#rayo" transform="rotate(225)"/><use href="#rayo" transform="rotate(247.5)"/><use href="#rayo" transform="rotate(270)"/><use href="#rayo" transform="rotate(292.5)"/><use href="#rayo" transform="rotate(315)"/><use href="#rayo" transform="rotate(337.5)"/></g><use href="#espiral"/></symbol>
     <symbol id="ico-bajar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
-    <symbol id="ico-sol" viewBox="-60 -60 120 120"><use href="#sol-rayos"/></symbol>
   </defs>
 </svg>
 
 <header class="nav" id="nav">
   <a class="marca" href="#inicio" aria-label="Rayly">
-    <svg class="marca-sol"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
+    <svg class="marca-sol"><use href="#sol" fill="url(#g-sol)" stroke="url(#g-sol)"/></svg>
     <span>Rayly</span>
   </a>
   <nav class="nav-enlaces" aria-label="Secciones">
@@ -91,8 +82,7 @@
       <div class="hero-sol" id="hero-sol">
         <div class="hero-halo"></div>
         <span class="anillo"></span><span class="anillo" style="--d:1"></span><span class="anillo" style="--d:2"></span>
-        <svg class="hero-rayos"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
-        <svg class="hero-espiral"><use href="#sol-espiral" stroke="#E2AC22"/></svg>
+        <svg class="hero-rayos"><use href="#sol" fill="url(#g-sol)" stroke="url(#g-sol)"/></svg>
       </div>
       <!-- Una sola etiqueta debajo del sol que va cambiando de dato -->
       <div class="hero-datos" id="hero-datos">
@@ -107,13 +97,13 @@
   <div class="cinta" aria-hidden="true">
     <div class="cinta-pista">
       <div class="cinta-grupo">
-        <span data-i18n="cinta.1">Tu fototipo</span><svg><use href="#ico-sol"/></svg>
-        <span data-i18n="cinta.2">El UV de tu zona</span><svg><use href="#ico-sol"/></svg>
-        <span data-i18n="cinta.3">Aviso para darte la vuelta</span><svg><use href="#ico-sol"/></svg>
-        <span data-i18n="cinta.4">Con la app cerrada</span><svg><use href="#ico-sol"/></svg>
-        <span data-i18n="cinta.5">Mejor hora del día</span><svg><use href="#ico-sol"/></svg>
-        <span data-i18n="cinta.6">Tu SPF a la vista</span><svg><use href="#ico-sol"/></svg>
-        <span data-i18n="cinta.7">Gratis</span><svg><use href="#ico-sol"/></svg>
+        <span data-i18n="cinta.1">Tu fototipo</span><svg><use href="#sol"/></svg>
+        <span data-i18n="cinta.2">El UV de tu zona</span><svg><use href="#sol"/></svg>
+        <span data-i18n="cinta.3">Aviso para darte la vuelta</span><svg><use href="#sol"/></svg>
+        <span data-i18n="cinta.4">Con la app cerrada</span><svg><use href="#sol"/></svg>
+        <span data-i18n="cinta.5">Mejor hora del día</span><svg><use href="#sol"/></svg>
+        <span data-i18n="cinta.6">Tu SPF a la vista</span><svg><use href="#sol"/></svg>
+        <span data-i18n="cinta.7">Gratis</span><svg><use href="#sol"/></svg>
       </div>
     </div>
   </div>
@@ -135,7 +125,7 @@
         <div class="dia-cielo" id="dia-cielo">
           <svg class="dia-arco" viewBox="0 0 400 210" aria-hidden="true">
             <path d="M20 200 A180 180 0 0 1 380 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 7" stroke-linecap="round"/>
-            <g id="dia-sol"><circle r="26" fill="#FFE27A" opacity=".35"/><use href="#sol-rayos" x="-22" y="-22" width="44" height="44" fill="url(#g-sol)"/></g>
+            <g id="dia-sol"><circle r="26" fill="#FFE27A" opacity=".35"/><use href="#sol" x="-22" y="-22" width="44" height="44" fill="url(#g-sol)" stroke="url(#g-sol)"/></g>
           </svg>
           <div class="dia-datos">
             <span class="dia-hora" id="dia-hora">14:00</span>
@@ -361,7 +351,7 @@
   <section class="final" id="descargar" data-tema="noche">
     <div class="final-sol" id="final-sol" aria-hidden="true">
       <div class="hero-halo"></div>
-      <svg class="hero-rayos"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
+      <svg class="hero-rayos"><use href="#sol" fill="url(#g-sol)" stroke="url(#g-sol)"/></svg>
     </div>
     <div class="contenedor final-texto">
       <h2 class="titulo titulo-grande" data-revela data-i18n="final.titulo">Tu sol de hoy <span class="oro">te&nbsp;espera.</span></h2>
@@ -383,7 +373,7 @@
 <footer class="pie">
   <div class="contenedor pie-arriba">
     <a class="marca" href="#inicio" aria-label="Rayly">
-      <svg class="marca-sol"><use href="#sol-rayos" fill="url(#g-sol)"/></svg>
+      <svg class="marca-sol"><use href="#sol" fill="url(#g-sol)" stroke="url(#g-sol)"/></svg>
       <span>Rayly</span>
     </a>
     <nav class="pie-enlaces" aria-label="Legal y contacto">
