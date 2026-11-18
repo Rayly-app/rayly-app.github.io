@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- Página de enlaces para la bio de Instagram (como un Linktree, pero nuestra):
+     web, App Store y Google Play. Si se abre en un iPhone se destaca el App
+     Store y en Android, Google Play. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rayly: enlaces</title>
+<meta name="description" content="Descarga Rayly gratis en iPhone y Android, o visita la web.">
+<meta name="theme-color" content="#14100A">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rayly: cuánto sol te toca hoy">
+<meta property="og:description" content="Descarga Rayly gratis en iPhone y Android.">
+<meta property="og:image" content="https://rayly-app.github.io/img/og.jpg">
+<meta property="og:url" content="https://rayly-app.github.io/enlaces/">
+<style>
+  @font-face { font-family: 'Fredoka'; font-weight: 300 700; font-display: swap; src: url('../fonts/fredoka-latin.woff2') format('woff2'); }
+  @font-face { font-family: 'Nunito'; font-weight: 300 800; font-display: swap; src: url('../fonts/nunito-latin.woff2') format('woff2'); }
+  :root { --oro: #F5C531; --oro-2: #D9A21A; --oro-claro: #FBE08A; --crema: #F4EAD4; --suave: #BFB29A; --marron: #3E3116; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100svh;
+    background: #14100A;
+    background-image:
+      radial-gradient(ellipse 80% 45% at 50% 0%, rgba(245,197,49,.22), transparent 70%),
+      radial-gradient(ellipse 90% 40% at 50% 110%, rgba(200,90,30,.25), transparent 70%);
+    color: var(--crema);
+    font-family: 'Nunito', system-ui, sans-serif;
+    display: flex; justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { width: 100%; max-width: 440px; padding: max(40px, env(safe-area-inset-top)) 20px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  /* El sol de Rayly, pequeño y girando como en la web */
+  .sol { position: relative; width: 132px; height: 132px; }
+  .sol .halo { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(circle, rgba(255,226,122,.6), rgba(245,197,49,.2) 45%, transparent 70%); filter: blur(8px); animation: respirar 5s ease-in-out infinite; }
+  .sol svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .sol .rayos { animation: girar 40s linear infinite; filter: drop-shadow(0 0 14px rgba(245,197,49,.45)); }
+  .sol .espiral { animation: girar 28s linear infinite reverse; }
+  @keyframes girar { to { transform: rotate(360deg); } }
+  @keyframes respirar { 50% { transform: scale(1.1); opacity: .8; } }
+
+  h1 { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 40px; margin: 14px 0 0; letter-spacing: -.01em; }
+  .frase { margin: 6px 0 0; font-size: 16px; line-height: 1.5; color: var(--suave); max-width: 22em; }
+
+  /* Botón largo de la web */
+  .web {
+    margin-top: 30px; width: 100%; height: 62px; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    background: linear-gradient(135deg, var(--oro-claro), var(--oro) 45%, var(--oro-2));
+    color: var(--marron); text-decoration: none;
+    font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 19px;
+    box-shadow: 0 12px 30px -12px rgba(217,162,26,.75);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .web svg { width: 26px; height: 26px; }
+  .web:active, .web:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(217,162,26,.9); }
+
+  /* Botones oficiales de las tiendas */
+  .tiendas { margin-top: 16px; width: 100%; display: flex; gap: 12px; justify-content: center; }
+  .tienda {
+    flex: 1 1 0; display: flex; align-items: center; justify-content: center;
+    height: 62px; border-radius: 16px; padding: 0 8px;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(244,234,212,.14);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .tienda img { height: 44px; width: auto; max-width: 100%; display: block; }
+  .tienda:hover { transform: translateY(-2px); border-color: rgba(245,197,49,.45); }
+  .tienda.destacada { border-color: rgba(245,197,49,.7); background: rgba(245,197,49,.1); box-shadow: 0 0 0 4px rgba(245,197,49,.12); }
+  .gratis { margin: 12px 0 0; font-size: 14px; color: var(--suave); }
+
+  .otros { margin-top: 34px; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
+  .otros a { color: var(--crema); font-weight: 700; font-size: 15px; text-decoration: underline; text-decoration-color: rgba(245,197,49,.6); text-underline-offset: 5px; }
+  footer { margin-top: auto; padding-top: 40px; font-size: 13px; color: rgba(191,178,154,.7); }
+
+  @media (prefers-reduced-motion: reduce) { .sol * { animation: none !important; } .web, .tienda { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="sol" aria-hidden="true">
+    <div class="halo"></div>
+    <svg class="rayos" viewBox="-60 -60 120 120">
+      <defs>
+        <radialGradient id="g" cx="50%" cy="42%" r="64%"><stop offset="0" stop-color="#FFF1BC"/><stop offset=".5" stop-color="#F3C531"/><stop offset="1" stop-color="#C4870F"/></radialGradient>
+        <path id="r" d="M0 -18C-2.6 -25 -3.4 -33 -1.4 -41C-0.6 -44 0.4 -47 2 -49C1.2 -45 1.8 -41 1.6 -37C1.4 -30 2 -24 0 -18Z"/>
+      </defs>
+      <g fill="url(#g)">
+        <use href="#r"/><use href="#r" transform="rotate(22.5)"/><use href="#r" transform="rotate(45)"/><use href="#r" transform="rotate(67.5)"/>
+        <use href="#r" transform="rotate(90)"/><use href="#r" transform="rotate(112.5)"/><use href="#r" transform="rotate(135)"/><use href="#r" transform="rotate(157.5)"/>
+        <use href="#r" transform="rotate(180)"/><use href="#r" transform="rotate(202.5)"/><use href="#r" transform="rotate(225)"/><use href="#r" transform="rotate(247.5)"/>
+        <use href="#r" transform="rotate(270)"/><use href="#r" transform="rotate(292.5)"/><use href="#r" transform="rotate(315)"/><use href="#r" transform="rotate(337.5)"/>
+      </g>
+    </svg>
+    <svg class="espiral" viewBox="-60 -60 120 120"><path fill="none" stroke="#E2AC22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M0.0 -2.0 L0.4 -2.1 L0.8 -2.1 L1.2 -2.1 L1.6 -2.0 L2.1 -1.7 L2.5 -1.4 L2.8 -1.0 L3.1 -0.5 L3.3 0.0 L3.3 0.6 L3.3 1.2 L3.2 1.8 L2.9 2.4 L2.5 3.0 L2.0 3.5 L1.4 4.0 L0.8 4.3 L0.0 4.5 L-0.8 4.6 L-1.6 4.5 L-2.5 4.3 L-3.2 3.9 L-4.0 3.3 L-4.6 2.7 L-5.1 1.9 L-5.5 1.0 L-5.8 0.0 L-5.8 -1.0 L-5.7 -2.1 L-5.3 -3.1 L-4.8 -4.1 L-4.1 -4.9 L-3.3 -5.7 L-2.3 -6.3 L-1.2 -6.8 L0.0 -7.0 L1.2 -7.0 L2.5 -6.8 L3.7 -6.4 L4.9 -5.8 L5.9 -4.9 L6.8 -3.9 L7.5 -2.7 L8.0 -1.4 L8.3 0.0 L8.3 1.5 L8.0 2.9 L7.5 4.3 L6.7 5.7 L5.7 6.9 L4.5 7.9 L3.2 8.7 L1.6 9.2 L0.0 9.5 L-1.7 9.5 L-3.3 9.2 L-5.0 8.6 L-6.5 7.7 L-7.8 6.6 L-8.9 5.2 L-9.8 3.6 L-10.4 1.8 L-10.8 0.0 L-10.7 -1.9 L-10.4 -3.8 L-9.7 -5.6 L-8.7 -7.3 L-7.4 -8.8 L-5.8 -10.0 L-4.0 -11.0 L-2.1 -11.7 L0.0 -12.0 L2.1 -12.0 L4.2 -11.5 L6.2 -10.8 L8.1 -9.6 L9.7 -8.2 L11.1 -6.4 L12.2 -4.4 L12.9 -2.3 L13.3 0.0 L13.2 2.3 L12.7 4.6 L11.8 6.8 L10.6 8.9 L9.0 10.7 L7.0 12.2 L4.9 13.4 L2.5 14.1 L0.0 14.5"/></svg>
+  </div>
+
+  <h1>Rayly</h1>
+  <p class="frase" data-en="How much sun is right for you today, based on your skin and your local UV.">Cuánto sol te toca hoy, según tu piel y el UV de tu zona.</p>
+
+  <a class="web" href="https://rayly-app.github.io/">
+    <svg viewBox="-60 -60 120 120" aria-hidden="true"><g fill="#3E3116"><use href="#r"/><use href="#r" transform="rotate(45)"/><use href="#r" transform="rotate(90)"/><use href="#r" transform="rotate(135)"/><use href="#r" transform="rotate(180)"/><use href="#r" transform="rotate(225)"/><use href="#r" transform="rotate(270)"/><use href="#r" transform="rotate(315)"/></g><circle r="11" fill="none" stroke="#3E3116" stroke-width="6"/></svg>
+    <span data-en="Visit the website">Visita la web</span>
+  </a>
+
+  <div class="tiendas" id="tiendas">
+    <a class="tienda" id="ios" href="https://apps.apple.com/app/id6823138029" aria-label="Descargar en el App Store">
+      <img src="../img/badge-app-store.svg" alt="Download on the App Store" width="132" height="44">
+    </a>
+    <a class="tienda" id="android" href="https://play.google.com/store/apps/details?id=com.rayly.app" aria-label="Disponible en Google Play">
+      <img src="../img/badge-google-play.png" alt="Get it on Google Play" width="148" height="44">
+    </a>
+  </div>
+  <p class="gratis" data-en="Free on iPhone and Android">Gratis en iPhone y Android</p>
+
+  <nav class="otros">
+    <a href="mailto:pjclimatelabs@gmail.com?subject=Rayly" data-en="Contact us">Escríbenos</a>
+    <a href="https://pjnl-15.github.io/Rayly/" data-en="Privacy">Privacidad</a>
+  </nav>
+
+  <footer>&copy; 2026 PJ Climate Labs</footer>
+</main>
+<script>
+  // Inglés si el móvil no está en español
+  if (!(navigator.language || 'es').toLowerCase().startsWith('es')) {
+    document.documentElement.lang = 'en';
+    document.querySelectorAll('[data-en]').forEach((el) => { el.textContent = el.dataset.en; });
+  }
+  // Se destaca (y va primero) la tienda del móvil que la abre
+  const ua = navigator.userAgent || '';
+  const esIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const esAndroid = /Android/.test(ua);
+  if (esIOS || esAndroid) {
+    const mia = document.getElementById(esIOS ? 'ios' : 'android');
+    mia.classList.add('destacada');
+    document.getElementById('tiendas').prepend(mia);
+  }
+</script>
+</body>
+</html>
