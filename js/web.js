@@ -26,7 +26,7 @@ const EN = {
   'nav.privacidad': 'Privacy',
   'nav.nosotros': 'About',
   'nav.descargar': 'Get the app',
-  'hero.chip': 'Now available, free for iPhone and Android',
+  'hero.chip': '<span class="chip-largo">Now available, free</span><span class="chip-corto">Free</span> for iPhone and Android',
   'hero.titulo': 'Enjoy the sun, <span class="oro">the smart way.</span>',
   'hero.sub': 'Rayly works out how much sun is right for you today, based on your skin and the UV where you are. And it tells you when to turn over and when to get out of the sun.',
   'flota.uv': 'UV now',

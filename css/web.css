@@ -210,6 +210,13 @@ body[data-tema="dia"] .oro, body[data-tema="tarde"] .oro {
   font-size: 14px; font-weight: 700; color: var(--oro-claro);
   background: rgba(245,197,49,.1); border: 1px solid rgba(245,197,49,.28);
 }
+/* En móviles estrechos la etiqueta se acorta para caber en una línea */
+.chip-corto { display: none; }
+@media (max-width: 380px) {
+  .chip { font-size: 13px; }
+  .chip-largo { display: none; }
+  .chip-corto { display: inline; }
+}
 .chip-punto { width: 8px; height: 8px; border-radius: 50%; background: var(--oro); box-shadow: 0 0 0 0 rgba(245,197,49,.6); animation: latido 2.2s infinite; }
 @keyframes latido { 70% { box-shadow: 0 0 0 9px rgba(245,197,49,0); } 100% { box-shadow: 0 0 0 0 rgba(245,197,49,0); } }
 
@@ -271,6 +278,12 @@ body[data-tema="dia"] .oro, body[data-tema="tarde"] .oro {
 .dato-punto { width: 9px; height: 9px; border-radius: 50%; background: #EFC93D; }
 @media (max-width: 520px) {
   .hero-escena { width: min(250px, 64vw); margin-top: 6px; margin-bottom: 94px; }
+}
+/* Móviles bajos (iPhone SE): sol más pequeño para que el título se vea antes */
+@media (max-width: 520px) and (max-height: 700px) {
+  .hero { padding-top: 76px; }
+  .hero-escena { width: min(180px, 52vw); margin-bottom: 84px; }
+  .hero-titulo { margin-top: 12px; }
 }
 
 @media (min-width: 980px) {
