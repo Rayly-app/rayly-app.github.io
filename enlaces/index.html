@@ -33,10 +33,18 @@
     display: flex; justify-content: center;
     -webkit-font-smoothing: antialiased;
   }
-  main { width: 100%; max-width: 440px; padding: max(40px, env(safe-area-inset-top)) 20px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  /* Cuatro bloques repartidos de arriba abajo para llenar la pantalla del
+     móvil; si la pantalla es baja, simplemente se baja con el dedo */
+  main {
+    width: 100%; max-width: 440px; min-height: 100svh;
+    padding: max(36px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 22px;
+    text-align: center;
+  }
+  .cabeza, .acciones, .pie { width: 100%; display: flex; flex-direction: column; align-items: center; }
 
-  /* El sol de Rayly, pequeño y girando como en la web */
-  .sol { position: relative; width: 132px; height: 132px; }
+  /* El sol de Rayly girando como en la web */
+  .sol { position: relative; width: 150px; height: 150px; }
   .sol .halo { position: absolute; inset: 12%; border-radius: 50%; background: radial-gradient(circle, rgba(255,226,122,.6), rgba(245,197,49,.2) 45%, transparent 70%); filter: blur(8px); animation: respirar 5s ease-in-out infinite; }
   .sol svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .sol .rayos { animation: girar 40s linear infinite; filter: drop-shadow(0 0 14px rgba(245,197,49,.45)); }
@@ -44,16 +52,16 @@
   @keyframes girar { to { transform: rotate(360deg); } }
   @keyframes respirar { 50% { transform: scale(1.1); opacity: .8; } }
 
-  h1 { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 40px; margin: 14px 0 0; letter-spacing: -.01em; }
-  .frase { margin: 6px 0 0; font-size: 16px; line-height: 1.5; color: var(--suave); max-width: 22em; }
+  h1 { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 48px; line-height: 1; margin: 6px 0 0; letter-spacing: -.01em; }
+  .frase { margin: 10px 0 0; font-size: 17px; line-height: 1.5; color: var(--suave); max-width: 21em; }
 
   /* Botón largo de la web */
   .web {
-    margin-top: 30px; width: 100%; height: 62px; border-radius: 18px;
+    width: 100%; height: 66px; border-radius: 18px;
     display: flex; align-items: center; justify-content: center; gap: 12px;
     background: linear-gradient(135deg, var(--oro-claro), var(--oro) 45%, var(--oro-2));
     color: var(--marron); text-decoration: none;
-    font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 19px;
+    font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 20px;
     box-shadow: 0 12px 30px -12px rgba(217,162,26,.75);
     transition: transform .2s ease, box-shadow .2s ease;
   }
@@ -61,27 +69,39 @@
   .web:active, .web:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(217,162,26,.9); }
 
   /* Botones oficiales de las tiendas */
-  .tiendas { margin-top: 16px; width: 100%; display: flex; gap: 12px; justify-content: center; }
+  .tiendas { margin-top: 14px; width: 100%; display: flex; gap: 12px; justify-content: center; }
   .tienda {
     flex: 1 1 0; display: flex; align-items: center; justify-content: center;
-    height: 62px; border-radius: 16px; padding: 0 8px;
+    height: 68px; border-radius: 16px; padding: 0 8px;
     background: rgba(255,255,255,.04); border: 1px solid rgba(244,234,212,.14);
     transition: transform .2s ease, border-color .2s ease, background .2s ease;
   }
-  .tienda img { height: 44px; width: auto; max-width: 100%; display: block; }
+  .tienda img { height: 46px; width: auto; max-width: 100%; display: block; }
   .tienda:hover { transform: translateY(-2px); border-color: rgba(245,197,49,.45); }
   .tienda.destacada { border-color: rgba(245,197,49,.7); background: rgba(245,197,49,.1); box-shadow: 0 0 0 4px rgba(245,197,49,.12); }
   .gratis { margin: 12px 0 0; font-size: 14px; color: var(--suave); }
 
-  .otros { margin-top: 34px; display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
+  /* Qué hace Rayly, en tres pasos */
+  .pasos {
+    width: 100%; list-style: none; margin: 0; padding: 6px 18px;
+    border-radius: 22px; background: rgba(255,255,255,.04); border: 1px solid rgba(244,234,212,.12);
+    text-align: left;
+  }
+  .pasos li { display: flex; align-items: center; gap: 14px; padding: 11px 0; font-size: 16px; line-height: 1.35; }
+  .pasos li + li { border-top: 1px solid rgba(244,234,212,.09); }
+  .pasos b { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 16px; color: var(--marron); background: linear-gradient(135deg, var(--oro-claro), var(--oro-2)); }
+
+  .pie { gap: 18px; }
+  .otros { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; }
   .otros a { color: var(--crema); font-weight: 700; font-size: 15px; text-decoration: underline; text-decoration-color: rgba(245,197,49,.6); text-underline-offset: 5px; }
-  footer { margin-top: auto; padding-top: 40px; font-size: 13px; color: rgba(191,178,154,.7); }
+  footer { font-size: 13px; color: rgba(191,178,154,.7); }
 
   @media (prefers-reduced-motion: reduce) { .sol * { animation: none !important; } .web, .tienda { transition: none; } }
 </style>
 </head>
 <body>
 <main>
+ <div class="cabeza">
   <div class="sol" aria-hidden="true">
     <div class="halo"></div>
     <svg class="rayos" viewBox="-60 -60 120 120">
@@ -101,7 +121,9 @@
 
   <h1>Rayly</h1>
   <p class="frase" data-en="How much sun is right for you today, based on your skin and your local UV.">Cuánto sol te toca hoy, según tu piel y el UV de tu zona.</p>
+ </div>
 
+ <div class="acciones">
   <a class="web" href="https://rayly-app.github.io/">
     <svg viewBox="-60 -60 120 120" aria-hidden="true"><g fill="#3E3116"><use href="#r"/><use href="#r" transform="rotate(45)"/><use href="#r" transform="rotate(90)"/><use href="#r" transform="rotate(135)"/><use href="#r" transform="rotate(180)"/><use href="#r" transform="rotate(225)"/><use href="#r" transform="rotate(270)"/><use href="#r" transform="rotate(315)"/></g><circle r="11" fill="none" stroke="#3E3116" stroke-width="6"/></svg>
     <span data-en="Visit the website">Visita la web</span>
@@ -116,13 +138,21 @@
     </a>
   </div>
   <p class="gratis" data-en="Free on iPhone and Android">Gratis en iPhone y Android</p>
+ </div>
 
+  <ol class="pasos">
+    <li><b>1</b><span data-en="Take the 1-minute skin test">Haz el test de tu piel en 1 minuto</span></li>
+    <li><b>2</b><span data-en="See how much sun is right for you today, with your local UV">Mira cuánto sol te toca hoy con el UV de tu zona</span></li>
+    <li><b>3</b><span data-en="It tells you when to turn over and when to get out of the sun">Te avisa para darte la vuelta y para salir del sol</span></li>
+  </ol>
+
+ <div class="pie">
   <nav class="otros">
     <a href="mailto:pjclimatelabs@gmail.com?subject=Rayly" data-en="Contact us">Escríbenos</a>
     <a href="https://pjnl-15.github.io/Rayly/" data-en="Privacy">Privacidad</a>
   </nav>
-
   <footer>&copy; 2026 PJ Climate Labs</footer>
+ </div>
 </main>
 <script>
   // Inglés si el móvil no está en español
